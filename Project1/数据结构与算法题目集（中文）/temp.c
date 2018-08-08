@@ -12,57 +12,69 @@ struct LNode
 typedef PtrToLNode Position;
 typedef PtrToLNode List;
 
+/*返回线性表中首次出现X的位置。若找不到则返回ERROR;*/
 Position Find(List L, ElementType X)
 {
+	Position ret = L;
+	while (ret != NULL && X != ret->Data)
+	{
+		ret = ret->Next;
+	}
+	if (ret == NULL)return ERROR;
+	else return ret;
 }
+
 List Insert(List L, ElementType X, Position P)
 {
+	/*notice that there could be null,
+	so comment these;
+	if (P == NULL || L == NULL)	{printf("Wrong Position for Insertion");return ERROR;}
+	*/
+	Position temp = L;
+	if (temp == P)
+	{
+		temp = (Position)malloc(sizeof(struct LNode));
+		temp->Data = X;
+		temp->Next = P;
+		return temp;
+	}
+	while (temp != NULL)
+	{
+		if (temp->Next == P)
+		{
+			Position New = (Position)malloc(sizeof(struct LNode));
+			temp->Next = New;
+			New->Next = P;
+			New->Data = X;
+			return L;
+		}
+		else { temp = temp->Next; }
+	}
+	printf("Wrong Position for Insertion\n");
+	return ERROR;
 }
+
+/*将位置P的元素删除并返回链表的表头。
+若参数P指向非法位置，
+则打印“Wrong Position for Deletion”并返回ERROR。*/
 List Delete(List L, Position P)
 {
-}
-
-int main()
-{
-	List L;
-	ElementType X;
-	Position P, tmp;
-	int N;
-
-	L = NULL;
-	scanf("%d", &N);
-	while (N--)
+	if (P == L)
 	{
-		scanf("%d", &X);
-		L = Insert(L, X, L);
-		if (L == ERROR) printf("Wrong Answer\n");
+		L = L->Next;
+		return L;
 	}
-	scanf("%d", &N);
-	while (N--)
+	Position temp = L;
+	while (temp->Next != P)
 	{
-		scanf("%d", &X);
-		P = Find(L, X);
-		if (P == ERROR)
-			printf("Finding Error: %d is not in.\n", X);
-		else
+		temp = temp->Next;
+		if (temp == NULL)
 		{
-			L = Delete(L, P);
-			printf("%d is found and deleted.\n", X);
-			if (L == ERROR)
-				printf("Wrong Answer or Empty List.\n");
+			printf("Wrong Position for Deletion\n");
+			return ERROR;
 		}
 	}
-	L = Insert(L, X, NULL);
-	if (L == ERROR) printf("Wrong Answer\n");
-	else
-		printf("%d is inserted as the last element.\n", X);
-	P = (Position)malloc(sizeof(struct LNode));
-	tmp = Insert(L, X, P);
-	if (tmp != ERROR) printf("Wrong Answer\n");
-	tmp = Delete(L, P);
-	if (tmp != ERROR) printf("Wrong Answer\n");
-	for (P = L; P; P = P->Next) printf("%d ", P->Data);
-	return 0;
+	temp->Next = P->Next;
+	free(P);
+	return L;
 }
-
-/* 你的代码将被嵌在这里 */
