@@ -23,7 +23,10 @@ Position Find(List L, ElementType X)
 	if (ret == NULL)return ERROR;
 	else return ret;
 }
-
+/*将X插入在位置P指向的结点之前，
+返回链表的表头。
+如果参数P指向非法位置，
+则打印“Wrong Position for Insertion”，返回ERROR；*/
 List Insert(List L, ElementType X, Position P)
 {
 	/*notice that there could be null,
@@ -38,20 +41,23 @@ List Insert(List L, ElementType X, Position P)
 		temp->Next = P;
 		return temp;
 	}
-	while (temp != NULL)
+	while (temp != NULL && temp->Next != P)
 	{
-		if (temp->Next == P)
-		{
-			Position New = (Position)malloc(sizeof(struct LNode));
-			temp->Next = New;
-			New->Next = P;
-			New->Data = X;
-			return L;
-		}
-		else { temp = temp->Next; }
+		temp = temp->Next;
 	}
-	printf("Wrong Position for Insertion\n");
-	return ERROR;
+	if (temp == NULL)
+	{
+		printf("Wrong Position for Insertion\n");
+		return ERROR;
+	}
+	else
+	{
+		Position New = (Position)malloc(sizeof(struct LNode));
+		temp->Next = New;
+		New->Next = P;
+		New->Data = X;
+		return L;
+	}
 }
 
 /*将位置P的元素删除并返回链表的表头。
@@ -65,16 +71,22 @@ List Delete(List L, Position P)
 		return L;
 	}
 	Position temp = L;
-	while (temp->Next != P)
+	/*notice!:
+	the order of these two "temp..."and"temp.next ..." is important
+	*/
+	while (temp != NULL && temp->Next != P)
 	{
 		temp = temp->Next;
-		if (temp == NULL)
-		{
-			printf("Wrong Position for Deletion\n");
-			return ERROR;
-		}
 	}
-	temp->Next = P->Next;
-	free(P);
-	return L;
+	if (temp == NULL)
+	{
+		printf("Wrong Position for Deletion\n");
+		return ERROR;
+	}
+	else
+	{
+		temp->Next = P->Next;
+		free(P);
+		return L;
+	}
 }
