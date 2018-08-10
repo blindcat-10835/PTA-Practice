@@ -1,92 +1,70 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define ERROR NULL
+#define ERROR 1e8
 typedef int ElementType;
-typedef struct LNode *PtrToLNode;
-struct LNode
+typedef enum { push, pop, end } Operation;
+typedef enum { false, true } bool;
+typedef int Position;
+struct SNode
 {
-	ElementType Data;
-	PtrToLNode Next;
+	ElementType *Data;
+	Position Top1, Top2;
+	int MaxSize;
 };
-typedef PtrToLNode Position;
-typedef PtrToLNode List;
+typedef struct SNode *Stack;
 
-/*返回线性表中首次出现X的位置。若找不到则返回ERROR;*/
-Position Find(List L, ElementType X)
+Stack CreateStack(int MaxSize)
 {
-	Position ret = L;
-	while (ret != NULL && X != ret->Data)
-	{
-		ret = ret->Next;
-	}
-	if (ret == NULL)return ERROR;
-	else return ret;
+	Stack S = (Stack)malloc(sizeof(struct SNode));
+	S->MaxSize = MaxSize;
+	S->Data = (ElementType *)malloc(sizeof(ElementType)*MaxSize);
+	S->Top2 = MaxSize;
+	S->Top1 = -1;
+	return S;
 }
-/*将X插入在位置P指向的结点之前，
-返回链表的表头。
-如果参数P指向非法位置，
-则打印“Wrong Position for Insertion”，返回ERROR；*/
-List Insert(List L, ElementType X, Position P)
+bool Push(Stack S, ElementType X, int Tag)
 {
-	/*notice that there could be null,
-	so comment these;
-	if (P == NULL || L == NULL)	{printf("Wrong Position for Insertion");return ERROR;}
-	*/
-	Position temp = L;
-	if (temp == P)
+	if (S == NULL)
+		return false;
+	if ((S->Top1 + 1) == S->Top2)
 	{
-		temp = (Position)malloc(sizeof(struct LNode));
-		temp->Data = X;
-		temp->Next = P;
-		return temp;
+		printf("Stack Full\n");
+		return false;
 	}
-	while (temp != NULL && temp->Next != P)
+	if (1 == Tag)
 	{
-		temp = temp->Next;
+		S->Data[++(S->Top1)] = X;
+		return true;
 	}
-	if (temp == NULL)
+	else if (2 == Tag)
 	{
-		printf("Wrong Position for Insertion\n");
-		return ERROR;
+		S->Data[(--S->Top2)] = X;
+		return true;
 	}
-	else
-	{
-		Position New = (Position)malloc(sizeof(struct LNode));
-		temp->Next = New;
-		New->Next = P;
-		New->Data = X;
-		return L;
-	}
+	return false;
 }
-
-/*将位置P的元素删除并返回链表的表头。
-若参数P指向非法位置，
-则打印“Wrong Position for Deletion”并返回ERROR。*/
-List Delete(List L, Position P)
+ElementType Pop(Stack S, int Tag)
 {
-	if (P == L)
-	{
-		L = L->Next;
-		return L;
-	}
-	Position temp = L;
-	/*notice!:
-	the order of these two "temp..."and"temp.next ..." is important
-	*/
-	while (temp != NULL && temp->Next != P)
-	{
-		temp = temp->Next;
-	}
-	if (temp == NULL)
-	{
-		printf("Wrong Position for Deletion\n");
+	if (S == NULL)
 		return ERROR;
-	}
-	else
+	if (1 == Tag)
 	{
-		temp->Next = P->Next;
-		free(P);
-		return L;
+		if (-1 == S->Top1)
+		{
+			printf("Stack %d Empty\n", Tag);
+			return ERROR;
+		}
+		return S->Data[(S->Top1)--];
 	}
+	else if (2 == Tag)
+	{
+		if (S->MaxSize == S->Top2)
+		{
+			printf("Stack %d Empty\n", Tag);
+			return ERROR;
+		}
+		return S->Data[(S->Top2)++];
+	}
+	return ERROR;
 }
