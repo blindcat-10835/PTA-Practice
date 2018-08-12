@@ -13,7 +13,7 @@ struct TNode
 
 void PreorderTraversal(BinTree BT); /* 先序遍历，由裁判实现，细节不表 */
 void InorderTraversal(BinTree BT);  /* 中序遍历，由裁判实现，细节不表 */
-
+/*函数Insert将X插入二叉搜索树BST并返回结果树的根结点指针；*/
 BinTree Insert(BinTree BST, ElementType X)
 {
 	if (BST == NULL)
@@ -32,15 +32,17 @@ BinTree Insert(BinTree BST, ElementType X)
 	else if (X < BST->Data)
 	{
 		BST->Left = Insert(BST->Left, X);
-		reutrn BST;
+		return BST;
 	}
 }
+/*函数Delete将X从二叉搜索树BST中删除，并返回结果树的根结点指针；如果X不在树中，则打印一行Not Found并返回原树的根结点指针；*/
 BinTree Delete(BinTree BST, ElementType X)
 {
 	//note: this function always return the root of BST,
 	//so dont change the BST pointer;
 	if (BST == NULL)
 	{
+		printf("Not Found\n");
 		return BST;
 	}
 	else if (X > BST->Data)
@@ -79,9 +81,14 @@ BinTree Delete(BinTree BST, ElementType X)
 		}
 	}
 }
+/*函数Find在二叉搜索树BST中找到X，返回该结点的指针；如果找不到则返回空指针；*/
 Position Find(BinTree BST, ElementType X)
 {
-	if (BST->Data == X)
+	if (BST == NULL)
+	{
+		return NULL;
+	}
+	else if (BST->Data == X)
 	{
 		return BST;
 	}
@@ -94,10 +101,35 @@ Position Find(BinTree BST, ElementType X)
 		return Find(BST->Left, X);
 	}
 }
+/*函数FindMin返回二叉搜索树BST中最小元结点的指针；*/
 Position FindMin(BinTree BST)
 {
 	if (BST == NULL)
 	{
+		return NULL;
+	}
+	else if (BST->Left != NULL)
+	{
+		return FindMin(BST->Left);
+	}
+	else
+	{
+		return BST;
 	}
 }
-Position FindMax(BinTree BST);
+/*函数FindMax返回二叉搜索树BST中最大元结点的指针。*/
+Position FindMax(BinTree BST)
+{
+	if (BST == NULL)
+	{
+		return NULL;
+	}
+	else if (BST->Right != NULL)
+	{
+		return FindMax(BST->Right);
+	}
+	else
+	{
+		return BST;
+	}
+}
