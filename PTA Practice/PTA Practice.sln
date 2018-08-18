@@ -27,9 +27,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "数据结构与算法题目
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PTA basic level practice", "PTA basic level practice", "{5845B1B7-2A48-401B-AD29-CEA949D4B0D4}"
 	ProjectSection(SolutionItems) = preProject
-		PTA basic level practice\PAT (Basic Level) Practice.h = PTA basic level practice\PAT (Basic Level) Practice.h
-		PTA basic level practice\PAT1001.c = PTA basic level practice\PAT1001.c
-		PTA basic level practice\PAT1002.c = PTA basic level practice\PAT1002.c
+		PTA basic level practice\1001.c = PTA basic level practice\1001.c
+		PTA basic level practice\1002.c = PTA basic level practice\1002.c
+		1003 我要通过！.cpp = 1003 我要通过！.cpp
 	EndProjectSection
 EndProject
 Global
