@@ -30,6 +30,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PTA basic level practice", 
 		PTA basic level practice\1001.c = PTA basic level practice\1001.c
 		PTA basic level practice\1002.c = PTA basic level practice\1002.c
 		1003 我要通过！.cpp = 1003 我要通过！.cpp
+		1004 成绩排名.cpp = 1004 成绩排名.cpp
 	EndProjectSection
 EndProject
 Global
