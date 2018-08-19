@@ -1,35 +1,25 @@
 #include <iostream>
 #include <string>
-#define MAX 1000
+#include <cmath>
 using namespace std;
-
 int main(int argc, char const *argv[])
 {
-	int length = 0, score[MAX];
-	string name[MAX], number[MAX];
-	cin >> length;
-	int i = length;
-	while (i--)
+	char c[41][81], tmp;
+	int i = 0, j = 0;
+	while ((tmp = getchar()) != '\n')
 	{
-		cin >> name[i] >> number[i] >> score[i];
+		if (tmp == ' ')
+		{
+			c[i++][j] = '\0';
+			j = 0;
+		}
+		else c[i][j++] = tmp;
 	}
-	int max = 0, min = 101, m = 0, n = 0;
-	i = length;
-	while (i--)
+	c[i][j] = '\0';
+	cout << c[i--];
+	while (i >= 0)
 	{
-		if (score[i] > max)
-		{
-			max = score[i];
-			m = i;
-		}
-		if (score[i] < min)
-		{
-			min = score[i];
-			n = i;
-		}
+		cout << ' ' << c[i--];
 	}
-	cout << name[m] << " " << number[m] << endl;
-	cout << name[n] << " " << number[n] << endl;
-
 	return 0;
 }
