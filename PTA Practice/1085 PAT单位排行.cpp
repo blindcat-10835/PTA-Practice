@@ -38,10 +38,11 @@ A03274 45 hypu
 4 hypu 81 2
 4 lanx 81 2
 */
-#include<algorithm>
+#include <algorithm>
 #include <iostream>
 #include <string>
 #include <cmath>
+#include <map>
 using namespace std;
 struct Student
 {
@@ -68,6 +69,8 @@ int main(int argc, char const *argv[])
 	Student St;
 	University *Un = new University[100000];
 	int u = 0;
+	map<string, int> SchoolIndex;
+	int j = 0;
 	for (int i = 0; i < N; i++)
 	{
 		cin >> St.ID >> St.score >> St.school;
@@ -80,32 +83,27 @@ int main(int argc, char const *argv[])
 			}
 		}
 
-		int j = 0;
-		for (j = 0; j < u; j++)
+		/*如果school的键第一次出现，对应存储在从零开始的数组里*/
+		if (SchoolIndex.count(St.school) == 0)
 		{
-			if (Un[j].name == St.school)
-			{
-				break;
-			}
+			SchoolIndex[St.school] = j++;
+			Un[SchoolIndex[St.school]].name = St.school;
 		}
-		if (Un[j].name != St.school)
-		{
-			Un[j].name = St.school;
-			u++;
-		}
-		Un[j].number_of_students++;
+
+		Un[SchoolIndex[St.school]].number_of_students++;
+
 		//以下，处理学生分数转换
 		if (St.ID[0] == 'T')
 		{
-			Un[j].total_score += (St.score * 1.5);
+			Un[SchoolIndex[St.school]].total_score += (St.score * 1.5);
 		}
 		else if (St.ID[0] == 'B')
 		{
-			Un[j].total_score += (St.score / 1.5);
+			Un[SchoolIndex[St.school]].total_score += (St.score / 1.5);
 		}
 		else
 		{
-			Un[j].total_score += St.score;
+			Un[SchoolIndex[St.school]].total_score += St.score;
 		}
 	}
 	//calculate rank
