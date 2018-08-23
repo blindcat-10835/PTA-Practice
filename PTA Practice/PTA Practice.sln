@@ -41,6 +41,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PTA basic level practice", 
 		1012 数字分类.cpp = 1012 数字分类.cpp
 		1013 数素数.cpp = 1013 数素数.cpp
 		1014 福尔摩斯的约会.cpp = 1014 福尔摩斯的约会.cpp
+		1015 德才论.cpp = 1015 德才论.cpp
 		1025 反转链表.cpp = 1025 反转链表.cpp
 		1067 试密码.cpp = 1067 试密码.cpp
 		1085 PAT单位排行.cpp = 1085 PAT单位排行.cpp
