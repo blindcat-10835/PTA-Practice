@@ -38,11 +38,11 @@ A03274 45 hypu
 4 hypu 81 2
 4 lanx 81 2
 */
-#include <algorithm>
+#include <algorithm> //for using "sort"
 #include <iostream>
 #include <string>
 #include <cmath>
-#include <map>
+#include <map>//for using "map"
 using namespace std;
 struct Student
 {
@@ -68,7 +68,6 @@ int main(int argc, char const *argv[])
 	cin >> N;
 	Student St;
 	University *Un = new University[100000];
-	int u = 0;
 	map<string, int> SchoolIndex;
 	int j = 0;
 	for (int i = 0; i < N; i++)
@@ -107,52 +106,12 @@ int main(int argc, char const *argv[])
 		}
 	}
 	//calculate rank
-	/*u = 0;
-	for (u = 0; Un[u].name != ""; u++)
-	{
-	}*/
-	sort(Un, Un + u, cmp);
 
-	//University max;
-	//int i_max = -1;
-	//int i_rank = 1;
-	//for (int j = 0; j < u; j++)
-	//{
-	//	max.name = "";
-	//	max.number_of_students = 0;
-	//	max.total_score = -1;
-	//	for (int i = j; i < u; i++)
-	//	{
-	//		if (max.total_score < Un[i].total_score)
-	//		{
-	//			max = Un[i];
-	//			i_max = i;
-	//		}
-	//		else if (max.total_score == Un[i].total_score)
-	//		{
-	//			if (max.number_of_students > Un[i].number_of_students)
-	//			{
-	//				max = Un[i];
-	//				i_max = i;
-	//			}
-	//			else if (max.number_of_students == Un[i].number_of_students)
-	//			{
-	//				if (max.name > Un[i].name)
-	//				{
-	//					max = Un[i];
-	//					i_max = i;
-	//				}
-	//			}
-	//		}
-	//	}
-	//	Un[i_max] = Un[j];
-	//	Un[j] = max;
-	//	if (j&&int(Un[j].total_score) != int(Un[j - 1].total_score))i_rank = j + 1;
-	//	Un[j].rank = i_rank;
-	//}
+	sort(Un, Un + j, cmp);
+
 	int i_rank = 1;
-	cout << u << endl;
-	for (int i = 0; i < u; i++)
+	cout << j << endl;
+	for (int i = 0; i < j; i++)
 	{
 		if (i&&int(Un[i].total_score) != int(Un[i - 1].total_score))i_rank = i + 1;
 
