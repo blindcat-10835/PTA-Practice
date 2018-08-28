@@ -43,7 +43,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PTA basic level practice", 
 		1014 福尔摩斯的约会.cpp = 1014 福尔摩斯的约会.cpp
 		1015 德才论.cpp = 1015 德才论.cpp
 		1025 反转链表.cpp = 1025 反转链表.cpp
+		1030 完美数列.cpp = 1030 完美数列.cpp
+		1033 旧键盘打字.cpp = 1033 旧键盘打字.cpp
+		1045 快速排序.cpp = 1045 快速排序.cpp
+		1054 求平均值.cpp = 1054 求平均值.cpp
 		1067 试密码.cpp = 1067 试密码.cpp
+		1068 万绿丛中一点红.cpp = 1068 万绿丛中一点红.cpp
+		1074 宇宙无敌加法器.cpp = 1074 宇宙无敌加法器.cpp
+		1081 检查密码.cpp = 1081 检查密码.cpp
 		1085 PAT单位排行.cpp = 1085 PAT单位排行.cpp
 	EndProjectSection
 EndProject
