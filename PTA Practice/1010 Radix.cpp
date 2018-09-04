@@ -67,7 +67,7 @@ int main(int argc, char const *argv[])
 	}
 	long long  a = Str_to_Int(N1, radix);
 
-	long long Low = 0;/*big point!!!!*/
+	long long Low = 1;/*big point!!!!*/
 	int tmp = 0;
 	for (int i = 0; i < N2.length(); i++)
 	{
