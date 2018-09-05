@@ -1,4 +1,3 @@
-//1012	The Best Rank	25	1546	5760	0.27
 //1013	Battle Over Cities	25	1614	5503	0.29
 //1014	Waiting in Line	30	882	3967	0.22
 //1015	Reversible Primes	20	1334	4941	0.27
@@ -38,3 +37,55 @@
 //1095	Cars on Campus	30	588	2345	0.25
 //1096	Consecutive Factors	20	700	2685	0.26
 //1101	Quick Sort	25	653	2929	0.22
+#define _CRT_SECURE_NO_WARNINGS
+#include <iostream>
+#include <string>
+#include <cmath>
+using namespace std;
+const int N = 1001;
+
+int graph[N][N] = { 0 };
+bool isVisited[N] = { false };
+void dfs(int d)
+{
+	isVisited[d] = true;
+	for (int i = 1; i <= N; i++)
+	{
+		if (graph[d][i] == 1 && !isVisited[i])
+		{
+			isVisited[i] = true;
+			dfs(i);
+		}
+	}
+}
+
+int main(int argc, char const *argv[])
+{
+	int  City, Edge, k;
+	cin >> City >> Edge >> k;
+	for (int i = 0; i < Edge; i++)
+	{
+		int a, b;
+		scanf("%d%d", &a, &b);
+		graph[a][b] = graph[b][a] = 1;
+	}
+	for (int i = 0; i < k; i++)
+	{
+		int a = 0;
+		scanf("%d", &a);
+		fill(&isVisited[1], &isVisited[City + 1], false);
+		isVisited[a] = true;
+		int number = 0;
+		for (int j = 1; j <= City; j++)
+		{
+			if (!isVisited[j])
+			{
+				dfs(j);
+				number++;
+			}
+		}
+
+		printf("%d\n", number - 1);
+	}
+	return 0;
+}

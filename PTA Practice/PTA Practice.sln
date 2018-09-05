@@ -64,6 +64,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PTA advance level", "PTA ad
 		1009 Product of Polynomials.cpp = 1009 Product of Polynomials.cpp
 		1010 Radix.cpp = 1010 Radix.cpp
 		1012 The Best Rank.cpp = 1012 The Best Rank.cpp
+		1013 Battle Over Cities.cpp = 1013 Battle Over Cities.cpp
+		1014 Waiting in Line.cpp = 1014 Waiting in Line.cpp
+		1015 Reversible Primes.cpp = 1015 Reversible Primes.cpp
+		1016 Phone Bills.cpp = 1016 Phone Bills.cpp
+		1017 Queueing at Bank.cpp = 1017 Queueing at Bank.cpp
+		1018 Public Bike Management.cpp = 1018 Public Bike Management.cpp
 	EndProjectSection
 EndProject
 Global
