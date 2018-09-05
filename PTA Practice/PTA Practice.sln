@@ -57,12 +57,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PTA basic level", "PTA basi
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PTA advance level", "PTA advance level", "{6FB5A3FF-C09A-453E-A7D6-AAC337F1E57E}"
 	ProjectSection(SolutionItems) = preProject
-		1010 Radix.cpp = 1010 Radix.cpp
 		1001 A+B Format.cpp = 1001 A+B Format.cpp
 		1002 A+B for Polynomials.cpp = 1002 A+B for Polynomials.cpp
 		1003 Emergency.cpp = 1003 Emergency.cpp
 		1007 Maximum Subsequence Sum.cpp = 1007 Maximum Subsequence Sum.cpp
 		1009 Product of Polynomials.cpp = 1009 Product of Polynomials.cpp
+		1010 Radix.cpp = 1010 Radix.cpp
+		1012 The Best Rank.cpp = 1012 The Best Rank.cpp
 	EndProjectSection
 EndProject
 Global
