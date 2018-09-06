@@ -1,4 +1,3 @@
-//1013	Battle Over Cities	25	1614	5503	0.29
 //1014	Waiting in Line	30	882	3967	0.22
 //1015	Reversible Primes	20	1334	4941	0.27
 //1016	Phone Bills	25	947	4410	0.21
@@ -42,50 +41,101 @@
 #include <string>
 #include <cmath>
 using namespace std;
-const int N = 1001;
+const int N = 10002;
+const int INF = 999999;
 
-int graph[N][N] = { 0 };
-bool isVisited[N] = { false };
-void dfs(int d)
+struct Window
 {
-	isVisited[d] = true;
-	for (int i = 1; i <= N; i++)
+	int list[N] = { 0 };
+	int head = 1;
+	int end = 0;
+};
+Window win[25];
+
+int cost[N] = { 0 };
+int EndTime[N] = { 0 };
+
+int inQ(int win_i, int cust_i)
+{
+	win[win_i].end++;
+	int curEnd = win[win_i].end;
+	if (win[win_i].list[curEnd - 1] >= 540)
 	{
-		if (graph[d][i] == 1 && !isVisited[i])
-		{
-			isVisited[i] = true;
-			dfs(i);
-		}
+		win[win_i].list[curEnd] = INF;
+		EndTime[cust_i] = INF;
+	}
+	else
+	{
+		win[win_i].list[curEnd] = cost[cust_i] + win[win_i].list[curEnd - 1];
+		EndTime[cust_i] = win[win_i].list[curEnd];
+		return 0;
 	}
 }
-
 int main(int argc, char const *argv[])
 {
-	int  City, Edge, k;
-	cin >> City >> Edge >> k;
-	for (int i = 0; i < Edge; i++)
+	int  Windows, Capacity, Customers, Queries;
+	cin >> Windows >> Capacity >> Customers >> Queries;
+	for (int Customer_i = 1; Customer_i <= Customers; Customer_i++)
 	{
-		int a, b;
-		scanf("%d%d", &a, &b);
-		graph[a][b] = graph[b][a] = 1;
-	}
-	for (int i = 0; i < k; i++)
-	{
-		int a = 0;
-		scanf("%d", &a);
-		fill(&isVisited[1], &isVisited[City + 1], false);
-		isVisited[a] = true;
-		int number = 0;
-		for (int j = 1; j <= City; j++)
+		scanf("%d", &cost[Customer_i]);
+		if (Customer_i <= Windows * Capacity)
 		{
-			if (!isVisited[j])
-			{
-				dfs(j);
-				number++;
-			}
+			//只入队
+			int curWin = (Customer_i - 1) % Windows + 1;
+			inQ(curWin, Customer_i);
 		}
-
-		printf("%d\n", number - 1);
+		else
+		{
+			//既有入队又有出队
+			int curWin = -1;
+			int tmpPopTime = INF + 1;
+			for (int i = 1; i <= Windows; i++)
+			{
+				if (win[i].list[win[i].head] < tmpPopTime)
+				{
+					tmpPopTime = win[i].list[win[i].head];
+					curWin = i;
+				}
+			}
+			win[curWin].head++;
+			inQ(curWin, Customer_i);
+		}
 	}
+	for (int i = 1; i <= Queries; i++)
+	{
+		int tmp;
+		scanf("%d", &tmp);
+		if (EndTime[tmp] < INF)
+		{
+			int hour = EndTime[tmp] / 60 + 8, minute = EndTime[tmp] % 60;
+			printf("%02d:%02d\n", hour, minute);
+		}
+		else
+		{
+			printf("Sorry\n");
+		}
+	}
+
 	return 0;
 }
+//2 2 7 7
+//1 2 6 4 3 534 2
+//1 2 3 4 5 6 7
+//08:01
+//08 : 02
+//08 : 07
+//08 : 06
+//08 : 10
+//17 : 00
+//Sorry
+
+//2 2 8 8
+//1 2 6 4 3 534 2 531
+//1 2 3 4 5 6 7 8
+//08:01
+//08 : 02
+//08 : 07
+//08 : 06
+//08 : 10
+//17 : 00
+//Sorry
