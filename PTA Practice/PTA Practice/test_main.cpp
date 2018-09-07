@@ -1,6 +1,3 @@
-//1014	Waiting in Line	30	882	3967	0.22
-//1015	Reversible Primes	20	1334	4941	0.27
-//1016	Phone Bills	25	947	4410	0.21
 //1017	Queueing at Bank	25	710	2809	0.25
 //1018	Public Bike Management	30	920	3695	0.25
 //1021	Deepest Root	25	1059	3908	0.27
@@ -8,7 +5,7 @@
 //1026	Table Tennis	30	372	2210	0.17
 
 //1028	List Sorting	25	1020	3553	0.29
-//1029	Median	25	950	10330	0.09
+
 //1032	Sharing	25	1044	3701	0.28
 //1033	To Fill or Not to Fill	25	758	2582	0.29
 //1039	Course List for Student	25	1021	4350	0.23
@@ -36,106 +33,103 @@
 //1095	Cars on Campus	30	588	2345	0.25
 //1096	Consecutive Factors	20	700	2685	0.26
 //1101	Quick Sort	25	653	2929	0.22
+
 #define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <string>
 #include <cmath>
+#include <algorithm>
+#include <map>
 using namespace std;
-const int N = 10002;
-const int INF = 999999;
-
-struct Window
+int fee[25] = { 0 };
+struct Record
 {
-	int list[N] = { 0 };
-	int head = 1;
-	int end = 0;
-};
-Window win[25];
+	string name = "";
+	int month = 0, day = 0, hour = 0, minute = 0, time = 0;
+	bool is_online = false;
+	bool is_vivid = false;
+} rec[1001];
 
-int cost[N] = { 0 };
-int EndTime[N] = { 0 };
-
-int inQ(int win_i, int cust_i)
+double caculate(int day, int hour, int minute)
 {
-	win[win_i].end++;
-	int curEnd = win[win_i].end;
-	if (win[win_i].list[curEnd - 1] >= 540)
-	{
-		win[win_i].list[curEnd] = INF;
-		EndTime[cust_i] = INF;
-	}
-	else
-	{
-		win[win_i].list[curEnd] = cost[cust_i] + win[win_i].list[curEnd - 1];
-		EndTime[cust_i] = win[win_i].list[curEnd];
-		return 0;
-	}
+	double total = fee[hour] * minute + fee[24] * 60 * day;
+	for (int i = 0; i < hour; i++)
+		total += fee[i] * 60;
+	return total / 100.0;
+}
+bool cmp(Record a, Record b)
+{
+	return a.name != b.name ? a.name < b.name : a.time < b.time;
 }
 int main(int argc, char const *argv[])
 {
-	int  Windows, Capacity, Customers, Queries;
-	cin >> Windows >> Capacity >> Customers >> Queries;
-	for (int Customer_i = 1; Customer_i <= Customers; Customer_i++)
+	for (int i = 0; i < 24; i++)
 	{
-		scanf("%d", &cost[Customer_i]);
-		if (Customer_i <= Windows * Capacity)
+		scanf("%d", &fee[i]);
+		fee[24] += fee[i];
+	}
+	int N;
+	scanf("%d", &N);
+	Record t; char t1[10] = "off-line"; char t2[21] = "name";
+	for (int i = 0; i < N; i++)
+	{
+		scanf("%s %d:%d:%d:%d %s", &t2[0], &t.month, &t.day, &t.hour, &t.minute, &t1[0]);
+		t.name = t2;
+		t.time = t.day * 24 * 60 + t.hour * 60 + t.minute;
+		if (t1[1] == 'n')t.is_online = true;
+		else t.is_online = false;
+		rec[i] = t;
+	}
+	sort(rec, rec + N, cmp);
+	string Name = "";
+	int day1, hour1, minute1;
+	double Total_amount = 0.0;
+	for (int i = 1; i < N; i++)
+	{
+		if (rec[i].name == rec[i - 1].name && rec[i - 1].is_online == true && rec[i].is_online == false && rec[i].is_vivid == false)
 		{
-			//只入队
-			int curWin = (Customer_i - 1) % Windows + 1;
-			inQ(curWin, Customer_i);
-		}
-		else
-		{
-			//既有入队又有出队
-			int curWin = -1;
-			int tmpPopTime = INF + 1;
-			for (int i = 1; i <= Windows; i++)
-			{
-				if (win[i].list[win[i].head] < tmpPopTime)
-				{
-					tmpPopTime = win[i].list[win[i].head];
-					curWin = i;
-				}
-			}
-			win[curWin].head++;
-			inQ(curWin, Customer_i);
+			rec[i].is_vivid = true;
+			rec[i - 1].is_vivid = true;
 		}
 	}
-	for (int i = 1; i <= Queries; i++)
+	int j = 0;
+	for (int i = 0; i < N; i++)
 	{
-		int tmp;
-		scanf("%d", &tmp);
-		if (EndTime[tmp] < INF)
+		if (rec[i].is_vivid)rec[j++] = rec[i];
+	}
+	rec[j].name = Name;
+	for (int i = 0; i < j; i++)
+	{
+		if (rec[i].name != Name)
 		{
-			int hour = EndTime[tmp] / 60 + 8, minute = EndTime[tmp] % 60;
-			printf("%02d:%02d\n", hour, minute);
+			Name = rec[i].name;
+			day1 = rec[i].day, hour1 = rec[i].hour, minute1 = rec[i].minute;
+			printf("%s %02d\n", &Name[0], rec[i].month);
 		}
 		else
 		{
-			printf("Sorry\n");
+			if (!rec[i].is_online)
+			{
+				if (rec[i - 1].is_online)
+				{
+					int day2 = rec[i].day, hour2 = rec[i].hour, minute2 = rec[i].minute;
+					int mi = (day2 - day1) * 24 * 60 + (hour2 - hour1) * 60 + (minute2 - minute1);
+					double cost = caculate(day2, hour2, minute2) - caculate(day1, hour1, minute1);
+					printf("%02d:%02d:%02d %02d:%02d:%02d %d $%.02f\n", day1, hour1, minute1, day2, hour2, minute2, mi, cost);
+					Total_amount += cost;
+				}
+			}
+			else
+			{
+				day1 = rec[i].day, hour1 = rec[i].hour, minute1 = rec[i].minute;
+			}
+		}
+		if (rec[i].name != rec[i + 1].name)
+		{
+			printf("Total amount: $%.02f\n", Total_amount);
+			Total_amount = 0;
 		}
 	}
 
 	return 0;
 }
-//2 2 7 7
-//1 2 6 4 3 534 2
-//1 2 3 4 5 6 7
-//08:01
-//08 : 02
-//08 : 07
-//08 : 06
-//08 : 10
-//17 : 00
-//Sorry
-
-//2 2 8 8
-//1 2 6 4 3 534 2 531
-//1 2 3 4 5 6 7 8
-//08:01
-//08 : 02
-//08 : 07
-//08 : 06
-//08 : 10
-//17 : 00
-//Sorry

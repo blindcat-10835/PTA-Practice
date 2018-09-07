@@ -70,6 +70,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PTA advance level", "PTA ad
 		1016 Phone Bills.cpp = 1016 Phone Bills.cpp
 		1017 Queueing at Bank.cpp = 1017 Queueing at Bank.cpp
 		1018 Public Bike Management.cpp = 1018 Public Bike Management.cpp
+		1029 Median.cpp = 1029 Median.cpp
 	EndProjectSection
 EndProject
 Global
