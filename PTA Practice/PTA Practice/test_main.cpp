@@ -53,27 +53,22 @@ using namespace std;
 
 int main(int argc, char const *argv[])
 {
-	/*int N = 40000, K = 2500;
+	int N = 40000, K = 2500;
 	cin >> N >> K;
-	map <string, set<int> > StudentToCourse_i;
+	map <string, vector<int>(K) > StudentToCourse_i;
 	for (int i = 0; i < K; i++)
 	{
 		set<int> s;
 
 		int ID, number;
-		scanf("%d %d\n",&ID,&number );
+		scanf("%d %d\n", &ID, &number);
 		for (int j = 0; j < number; j++)
 		{
 			string stu;
 			scanf("%s", &stu[0]);
-			StudentToCourse_i[stu].insert(ID);
+			StudentToCourse_i[stu] = vector<int>(4, 0);
+			StudentToCourse_i[stu]push_back() = i;
 		}
-	}*/
-	int b[10];
-	vector<int> a(10);
-	for each (int i in b)
-	{
-		cout << i;
 	}
 
 	return 0;
