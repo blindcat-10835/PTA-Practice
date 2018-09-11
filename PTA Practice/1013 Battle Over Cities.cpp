@@ -34,6 +34,11 @@ Sample Output:
 0
 0
 */
+
+/*
+深度优先算法
+连通子图的计算
+*/
 #define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <string>

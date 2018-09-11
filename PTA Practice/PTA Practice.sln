@@ -25,6 +25,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "数据结构与算法题目
 		数据结构与算法题目集（中文）\7-2 一元多项式的乘法与加法运算.cpp = 数据结构与算法题目集（中文）\7-2 一元多项式的乘法与加法运算.cpp
 		7-3 树的同构.cpp = 7-3 树的同构.cpp
 		7-4 是否同一棵二叉搜索树.cpp = 7-4 是否同一棵二叉搜索树.cpp
+		7-5 堆中的路径.cpp = 7-5 堆中的路径.cpp
+		7-6 列出连通集.cpp = 7-6 列出连通集.cpp
+		7-7 六度空间.cpp = 7-7 六度空间.cpp
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PTA basic level", "PTA basic level", "{5845B1B7-2A48-401B-AD29-CEA949D4B0D4}"
@@ -73,6 +76,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PTA advance level", "PTA ad
 		1017 Queueing at Bank.cpp = 1017 Queueing at Bank.cpp
 		1018 Public Bike Management.cpp = 1018 Public Bike Management.cpp
 		1029 Median.cpp = 1029 Median.cpp
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "数据结构和算法_实现", "数据结构和算法_实现", "{169258E9-F7D4-4FB5-9C00-0177F82E2255}"
+	ProjectSection(SolutionItems) = preProject
+		图论.cpp = 图论.cpp
 	EndProjectSection
 EndProject
 Global

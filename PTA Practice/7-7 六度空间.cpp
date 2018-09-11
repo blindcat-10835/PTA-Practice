@@ -48,6 +48,40 @@
 #include <queue>
 using namespace std;
 
+void BFS(int Root, int length, vector< vector<bool> > Graph)
+{
+	int Distance = 0, LayerDis_iBegin = Root, LayerDis_iEnd = Root, count = 0;
+	vector<bool> isVisited(length, false);
+	queue<int> Q;
+	Q.push(Root);
+	isVisited[Root] = true;
+	while (!Q.empty())
+	{
+		for (int j = 0; j < length; j++)
+		{
+			if (Graph[Q.front()][j] && isVisited[j] == false)
+			{
+				Q.push(j);
+				isVisited[j] = true;
+				LayerDis_iBegin = j;
+			}
+		}
+		if (Q.front() == LayerDis_iEnd)
+		{
+			Distance++;
+			LayerDis_iEnd = LayerDis_iBegin;
+		}
+		Q.pop();
+		count++;
+		if (Distance > 6)
+		{
+			printf("%d: %.02f%%\n", Root + 1, count / double(length)*100.0);
+			return;
+		}
+	}
+	printf("%d: %.02f%%\n", Root + 1, count / double(length)*100.0);
+	return;
+}
 int main(int argc, char const *argv[])
 {
 	int N = 10000, E = 33 * 10000;
@@ -58,6 +92,11 @@ int main(int argc, char const *argv[])
 		int a, b;
 		cin >> a >> b;
 		Graph[a - 1][b - 1] = Graph[b - 1][a - 1] = true;
+	}
+
+	for (int i = 0; i < N; i++)
+	{
+		BFS(i, N, Graph);
 	}
 
 	return 0;
