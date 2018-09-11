@@ -39,25 +39,41 @@
 10: 70.00%
 */
 #define _CRT_SECURE_NO_WARNINGS
-#include <iostream>
-#include <string>
-#include <cmath>
-#include <vector>
+#include <algorithm>
 #include <cctype>
-#include <set>
+#include <cmath>
+#include <iostream>
+#include <map>
 #include <queue>
+#include <set>
+#include <string>
+#include <vector>
+
 using namespace std;
 
 int main(int argc, char const *argv[])
 {
-	int N = 10000, E = 33 * 10000;
-	cin >> N >> E;
-	vector< vector<bool> > Graph(N, vector<bool>(N, false));
-	for (int i = 0; i < E; i++)
+	/*int N = 40000, K = 2500;
+	cin >> N >> K;
+	map <string, set<int> > StudentToCourse_i;
+	for (int i = 0; i < K; i++)
 	{
-		int a, b;
-		cin >> a >> b;
-		Graph[a - 1][b - 1] = Graph[b - 1][a - 1] = true;
+		set<int> s;
+
+		int ID, number;
+		scanf("%d %d\n",&ID,&number );
+		for (int j = 0; j < number; j++)
+		{
+			string stu;
+			scanf("%s", &stu[0]);
+			StudentToCourse_i[stu].insert(ID);
+		}
+	}*/
+	int b[10];
+	vector<int> a(10);
+	for each (int i in b)
+	{
+		cout << i;
 	}
 
 	return 0;
