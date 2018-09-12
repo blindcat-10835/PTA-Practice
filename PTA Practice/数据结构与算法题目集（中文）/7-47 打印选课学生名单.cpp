@@ -64,6 +64,8 @@ blindcat
 疑问！！！！！
 为什么用char[] 输入可以用sort排序 !!
 而用string push 进去就不可以了！！！！！!!!
+
+因为scanf不可以正确读入string！！只有cin可以
 */
 #define _CRT_SECURE_NO_WARNINGS
 #include <algorithm>
