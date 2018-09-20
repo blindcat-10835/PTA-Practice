@@ -1,71 +1,56 @@
 ﻿#define _CRT_SECURE_NO_WARNINGS
-#include <algorithm>
-#include <cctype>
-#include <cmath>
 #include <iostream>
-#include <map>
-#include <queue>
-#include <set>
 #include <string>
+#include <cmath>
 #include <vector>
+#include <cctype>
+#include <set>
+#include <queue>
 using namespace std;
-struct Student
+typedef int ElementType;
+typedef struct LNode* PtrToLNode;
+typedef PtrToLNode List;
+struct LNode
 {
-	int ID = 0, Score = 0;
-	string Name = "";
+	ElementType Value = 0;
+	PtrToLNode Next = nullptr;
 };
-bool cmp_Name(Student A, Student B)
+
+PtrToLNode CreateNewNode()
 {
-	if (A.Name != B.Name)
-	{
-		return A.Name < B.Name;
-	}
-	else
-	{
-		return A.ID < B.ID;
-	}
-}
-bool cmp_ID(Student A, Student B)
-{
-	return A.ID < B.ID;
-}
-bool cmp_Score(Student A, Student B)
-{
-	if (A.Score != B.Score)
-	{
-		return A.Score < B.Score;
-	}
-	else
-	{
-		return A.ID < B.ID;
-	}
+	PtrToLNode ret = (PtrToLNode)malloc(sizeof(LNode));
+	ret->Next = nullptr;
+	ret->Value = 0;
+	return ret;
 }
 int main(int argc, char const *argv[])
 {
-	int N = 100000, C;
-	scanf("%d %d\n", &N, &C);
-	vector<Student> Stu(N);
-	for (int i = 0; i < N; i++)
+	int N;
+	List Head = CreateNewNode();
+	PtrToLNode Tail = Head, K = Head;
+	scanf("%d", &N);
+	N -= 1;/*倒数第一个与tail是一致的*/
+	while (true)
 	{
-		cin >> Stu[i].ID >> Stu[i].Name >> Stu[i].Score;
+		int tmp;
+		scanf("%d", &tmp);
+		if (tmp < 0)break;
+		Tail->Next = CreateNewNode();
+		Tail = Tail->Next;
+		Tail->Value = tmp;
+		if (N)N--;
+		else K = K->Next;
 	}
-	switch (C)
+	PtrToLNode Tmp = Head;
+	Head = Head->Next;
+	if (K != Tmp)
 	{
-	default:
-		break;
-	case 1:
-		sort(Stu.begin(), Stu.end(), cmp_ID);
-		break;
-	case 2:
-		sort(Stu.begin(), Stu.end(), cmp_Name);
-		break;
-	case 3:
-		sort(Stu.begin(), Stu.end(), cmp_Score);
-		break;
+		cout << K->Value;
 	}
-	for (auto iter : Stu)
+	else
 	{
-		printf("%06d %s %d\n", iter.ID, iter.Name.c_str(), iter.Score);
+		cout << "NULL\n";
 	}
+	free(Tmp);
 	return 0;
 }
