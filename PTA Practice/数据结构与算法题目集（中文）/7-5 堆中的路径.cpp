@@ -80,6 +80,5 @@ int main(int argc, char const *argv[])
 		}
 		cout << MinHeap[tmp] << endl;
 	}
-
 	return 0;
 }
