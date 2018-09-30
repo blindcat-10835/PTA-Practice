@@ -1,7 +1,7 @@
-ï»¿/*10. Regular Expression Matching
+/*10. Regular Expression Matching
 https://leetcode.com/problems/regular-expression-matching/description/
 */
-//å‚è€ƒäº†ç­”æ¡ˆçš„é€’å½’ç®—æ³•ï¼Œè‡ªå·±æ²¡åšå‡ºæ¥
+//²Î¿¼ÁË´ğ°¸µÄµİ¹éËã·¨£¬×Ô¼ºÃ»×ö³öÀ´
 #define _CRT_SECURE_NO_WARNINGS
 #include <algorithm>
 #include <cctype>
@@ -30,7 +30,7 @@ public:
 		else
 		{
 			return true
-				&& !s.empty()//æ³¨æ„æ‰€æœ‰çš„â€œï¼s.empty()â€è¯­å¥å¿…é¡»æ”¾åœ¨substrä¸Šé¢ï¼›
+				&& !s.empty()//×¢ÒâËùÓĞµÄ¡°£¡s.empty()¡±Óï¾ä±ØĞë·ÅÔÚsubstrÉÏÃæ£»
 				&& (s[0] == p[0] || p[0] == '.')
 				&& isMatch(s.substr(1), p.substr(1));
 		}
