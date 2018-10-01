@@ -1,4 +1,4 @@
-﻿#define _CRT_SECURE_NO_WARNINGS
+#define _CRT_SECURE_NO_WARNINGS
 #include <algorithm>
 #include <cctype>
 #include <cmath>
@@ -55,7 +55,6 @@ public:
 int main(int argc, char const *argv[])
 {
 	LRUCache cache(2 /* capacity */);
-
 	cache.put(2, 2);
 	cache.put(1, 1);
 	cache.put(2, 3);    // evicts key 2

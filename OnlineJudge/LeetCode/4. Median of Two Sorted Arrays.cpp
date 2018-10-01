@@ -20,6 +20,7 @@ nums2 = [3, 4]
 The median is (2 + 3)/2 = 2.5
 
 */
+
 #define _CRT_SECURE_NO_WARNINGS
 #include <algorithm>
 #include <cctype>
@@ -31,6 +32,8 @@ The median is (2 + 3)/2 = 2.5
 #include <string>
 #include <vector>
 using namespace std;
+/*关闭io同步加快cin速度！*/
+static int x = []() { ios::sync_with_stdio(0); cin.tie(0); cout.tie(0); return 0; }();
 /*初次思路：
 使用双指针归并
 */
