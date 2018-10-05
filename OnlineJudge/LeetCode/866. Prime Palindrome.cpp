@@ -1,4 +1,4 @@
-ï»¿#define _CRT_SECURE_NO_WARNINGS
+#define _CRT_SECURE_NO_WARNINGS
 #include <algorithm>
 #include <cctype>
 #include <cmath>
@@ -44,20 +44,20 @@ public:
 	int findNextPalidrome(int N)
 	{
 		string s = to_string(N);
-		//è°ƒæ•´ä¸ºå›žæ–‡ï¼›
+		//µ÷ÕûÎª»ØÎÄ£»
 		for (int i = 0, j = s.size() - 1; i < j; i++, j--)
 		{
 			s[j] = s[i];
 		}
 		if (stoi(s) > N)return stoi(s);
 
-		//æ‰¾åˆ°ä¸‹ä¸€ä¸ª
+		//ÕÒµ½ÏÂÒ»¸ö
 		int i = (s.size() + 1) / 2;
 		int j = s.size() - i;
 		string tmp = to_string(stoi(s.substr(0, i)) + 1);
 		s = tmp + s.substr(i, j);
 
-		//è°ƒæ•´ä¸ºå›žæ–‡ï¼›
+		//µ÷ÕûÎª»ØÎÄ£»
 		for (int i = 0, j = s.size() - 1; i < j; i++, j--)
 		{
 			s[j] = s[i];
