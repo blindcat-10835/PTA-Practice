@@ -1,4 +1,4 @@
-ï»¿#define _CRT_SECURE_NO_WARNINGS
+#define _CRT_SECURE_NO_WARNINGS
 #include <algorithm>
 #include <cctype>
 #include <cmath>
@@ -14,8 +14,8 @@
 using namespace std;
 static int x = []()
 {
-	ios::sync_with_stdio(false);    // cinä¸stdinç¦æ­¢åŒæ­¥
-	cin.tie(NULL);                  //cinä¸coutè§£é™¤ç»‘å®š
+	ios::sync_with_stdio(false);    // cinÓëstdin½ûÖ¹Í¬²½
+	cin.tie(NULL);                  //cinÓëcout½â³ı°ó¶¨
 	return 0;
 }();
 typedef string OutType;
@@ -154,11 +154,3 @@ int main()
 	}
 	return 0;
 }
-//int main(int argc, char const *argv[])
-//{
-//	InType S1 = { 1,2,3 };
-//	Solution Condition;
-//	OutType Result = Condition.maxPathSum(S1);
-//	cout << Result << endl;
-//	return 0;
-//}
